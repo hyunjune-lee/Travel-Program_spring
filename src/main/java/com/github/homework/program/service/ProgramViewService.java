@@ -3,6 +3,7 @@ package com.github.homework.program.service;
 import com.github.homework.program.model.ProgramViewDetailDto;
 import com.github.homework.program.model.ProgramViewDto;
 import com.github.homework.program.repository.ProgramRepository;
+import com.github.homework.theme.service.ThemeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class ProgramViewService {
 
     private final ProgramRepository programRepository;
+    private final ThemeService themeService;
 
     public Optional<ProgramViewDetailDto> getBy(Long id) {
         return programRepository.findById(id).map(program ->
@@ -25,7 +27,8 @@ public class ProgramViewService {
                         program.getName(),
                         program.getIntroduction(),
                         program.getIntroductionDetail(),
-                        program.getRegion()
+                        program.getRegion(),
+                        program.getTheme()
                 )
         );
     }
