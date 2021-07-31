@@ -11,13 +11,15 @@ public class ProgramViewDetailDto {
     private final String introductionDetail;
     private final String region;
     private final String themeName;
+    private final int reservationCount;
 
-    public ProgramViewDetailDto(Long id, String name, String introduction, String introductionDetail, String region, Theme theme) {
+    public ProgramViewDetailDto(Long id, String name, String introduction, String introductionDetail, String region, String themeName, int reservationCount) {
         this.id = id;
         this.name = name;
         this.introduction = introduction;
         this.introductionDetail = introductionDetail;
         this.region = region;
-        this.themeName = theme.getName();
+        this.themeName = themeName;
+        this.reservationCount = reservationCount;
     }
 }

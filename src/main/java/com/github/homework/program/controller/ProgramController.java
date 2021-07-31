@@ -39,6 +39,13 @@ public class  ProgramController {
         return programViewDto.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/popular")
+    public ResponseEntity<Page<ProgramViewDetailDto>> getPopular(
+            @PageableDefault(size = 10, sort = "reservationCount", direction = Sort.Direction.DESC)
+                    Pageable pageable) {
+        return ResponseEntity.ok(this.programViewService.getPopular(pageable));
+    }
+
     @PostMapping
     public ResponseEntity<SimpleResponse> saveProgram(@RequestBody @Valid ProgramSaveDto
                                                               programSaveDto) {

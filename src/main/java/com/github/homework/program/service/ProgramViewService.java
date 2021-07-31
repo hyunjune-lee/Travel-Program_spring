@@ -28,7 +28,8 @@ public class ProgramViewService {
                         program.getIntroduction(),
                         program.getIntroductionDetail(),
                         program.getRegion(),
-                        program.getTheme()
+                        program.getTheme().getName(),
+                        program.getReservationCount()
                 )
         );
     }
@@ -37,4 +38,7 @@ public class ProgramViewService {
         return programRepository.findBy(pageable);
     }
 
+    public Page<ProgramViewDetailDto> getPopular(Pageable pageable) {
+        return programRepository.getPopular(pageable);
+    }
 }

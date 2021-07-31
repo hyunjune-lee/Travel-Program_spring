@@ -25,7 +25,7 @@ public class ProgramSaveService {
             .introduction(programSaveDto.getIntroduction())
             .introductionDetail(programSaveDto.getIntroductionDetail())
             .region(programSaveDto.getRegion())
-            .theme(theme).build();
+            .theme(theme).reservationCount(programSaveDto.getReservationCount()).build();
         this.programRepository.save(program);
     }
 
@@ -37,7 +37,8 @@ public class ProgramSaveService {
             programSaveDto.getIntroduction(),
             programSaveDto.getIntroductionDetail(),
             programSaveDto.getRegion(),
-            theme
+            theme,
+                programSaveDto.getReservationCount()
         );
     }
 

@@ -22,15 +22,19 @@ public class ProgramSaveDto {
     private String region;
     @NotBlank
     private String themeName;
+    private int reservationCount;
+
 
     @Builder
     public ProgramSaveDto(Long id, String name, String introduction, String introductionDetail, String region,
-                          String themeName) {
+                          String themeName, int reservationCount ) {
         this.id = id;
         this.name = name;
         this.introduction = introduction;
         this.introductionDetail = introductionDetail;
         this.region = region;
         this.themeName = themeName;
+        this.reservationCount = reservationCount;
     }
+
 }

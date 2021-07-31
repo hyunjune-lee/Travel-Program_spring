@@ -2,6 +2,7 @@ package com.github.homework.program.repository;
 
 
 import com.github.homework.program.domain.Program;
+import com.github.homework.program.model.ProgramViewDetailDto;
 import com.github.homework.program.model.ProgramViewDto;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
@@ -33,4 +34,23 @@ public class ProgramCustomRepositoryImpl extends QuerydslRepositorySupport imple
 
         return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
     }
+
+    public Page<ProgramViewDetailDto> getPopular(Pageable pageable) {
+        JPQLQuery<ProgramViewDetailDto> query = Objects.requireNonNull(getQuerydsl())
+                .applyPagination(pageable, from(program)
+                        .innerJoin(program.theme, theme)
+                ).select(Projections.constructor(ProgramViewDetailDto.class,
+                        program.id,
+                        program.name,
+                        program.introduction,
+                        program.introductionDetail,
+                        program.region,
+                        program.theme.name,
+                        program.reservationCount
+                ));
+
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, query::fetchCount);
+    }
+
+
 }

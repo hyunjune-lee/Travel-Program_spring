@@ -28,26 +28,33 @@ public class Program {
     @Column(name = "introduction_detail", nullable = false)
     private String introductionDetail;
 
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "theme_id")
     private Theme theme;
+    @Column(name = "reservationCount", nullable = false)
+    private int reservationCount;
+
 
     @Builder
-    public Program(String name, String introduction, String introductionDetail, String region, Theme theme) {
+    public Program(String name, String introduction, String introductionDetail, String region, Theme theme, int reservationCount) {
         this.name = name;
         this.introduction = introduction;
         this.introductionDetail = introductionDetail;
         this.region = region;
         this.theme = theme;
+        this.reservationCount = reservationCount;
     }
 
     public void updateProgram(String name, String introduction, String introductionDetail, String region,
-                              Theme theme) {
+                              Theme theme, int reservationCount) {
         this.name = name;
         this.introduction = introduction;
         this.introductionDetail = introductionDetail;
         this.region = region;
         this.theme = theme;
+        this.reservationCount = reservationCount;
+
     }
 
 }
